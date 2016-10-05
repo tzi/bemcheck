@@ -1,0 +1,24 @@
+{
+  "name": "bem-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "bemcheck": "./src/bemcheck.js",
+    "bemview": "./src/bemview.js"
+  },
+  "scripts": {
+    "bemcheck": "src/bemcheck.js",
+    "bemview": "src/bemview.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "lodash": "^4.16.3",
+    "minimist": "^1.2.0",
+    "node-fetch": "^1.6.0",
+    "open": "0.0.5"
+  }
+}
