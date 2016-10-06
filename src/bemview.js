@@ -18,13 +18,22 @@ function getTree($, node, parentBlockList = []) {
         let subTree = getTree($, $(child), childrenBlockList);
         if (!Array.isArray(subTree)) subTree = [subTree];
         children = [...children, ...subTree];
+        children = _.reduce(children, (result, value) => {
+            const duplicate = _.find(result, {name: value.name, children: value.children});
+            if (duplicate) {
+                duplicate.count++;
+            } else {
+                result.push(value);
+            }
+            return result;
+        }, []);
     });
 
     if (!blockList.length) {
         return children;
     }
 
-    return {name: blockList.join(' '), children};
+    return {name: blockList.join(' '), count: 1, children};
 }
 
 function parsePage(url, rootQuery) {

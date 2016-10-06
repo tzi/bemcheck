@@ -108,7 +108,7 @@
                     return d.children || d._children ? "end" : "start";
                 })
                 .text(function (d) {
-                    return d.name;
+                    return d.name + (d.count > 1 ? ' (' + d.count + ')' : '');
                 })
                 .style("fill-opacity", 1e-6);
 
