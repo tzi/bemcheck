@@ -13,8 +13,9 @@ function getTree($, node, parentBlockList = []) {
     const blockList = bemUtils.getBlockList(node);
     
     let children = [];
+    const childrenBlockList = [...blockList, ...parentBlockList];
     node.children().each((index, child) => {
-        let subTree = getTree($, $(child), blockList ? blockList : parentBlockList);
+        let subTree = getTree($, $(child), childrenBlockList);
         if (!Array.isArray(subTree)) subTree = [subTree];
         children = [...children, ...subTree];
     });

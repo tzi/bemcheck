@@ -13,8 +13,9 @@ function walk($, node, parentBlockList = []) {
     bemUtils.check(node, parentBlockList);
     
     const blockList = bemUtils.getBlockList(node);
+    const childrenBlockList = [...blockList, ...parentBlockList];
     node.children().each((index, child) => {
-        walk($, $(child), blockList ? blockList : parentBlockList);
+        walk($, $(child), childrenBlockList);
     });
 }
 
