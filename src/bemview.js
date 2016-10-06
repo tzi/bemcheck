@@ -31,7 +31,14 @@ function parsePage(url, rootQuery) {
         .then((response) => response.text())
         .then(html => cheerio.load(html))
         .then($ => {
-            const tree = getTree($, $(rootQuery).first());
+            let tree = getTree($, $(rootQuery).first());
+            if (Array.isArray(tree)) {
+                if (tree.length == 1) {
+                    tree = tree[0];
+                } else {
+                    tree = {name: ':root', children: tree}
+                }
+            }
                 
             fs.readFile(`${__dirname}/template.html`, 'utf8', (err, template) => {
                 if (err) throw err;
